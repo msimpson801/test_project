@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import {Provider} from "react-redux";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import ReduxPlayground from "./Example4/ReduxPlayground";
+import RerenderPlayground from "./Example1/RerenderPlayground";
+import PropDrillPlayground from "./Example2/PropDrillPlayground";
+import ContextPlayground from "./Example3/ContextPlayground";
+import {store} from "./Common/configureStore";
+import DarkModeButton from "./MorphPlayground";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return (<Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/redux" element={<ReduxPlayground/>}/>
+            <Route path="/simplestate" element={<RerenderPlayground/>}/>
+            <Route path="/propdrill" element={<PropDrillPlayground/>}/>
+            <Route path="/context" element={<ContextPlayground/>}/>
+            <Route path="/morphplayground" element={<DarkModeButton/>}/>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+  )
 }
 
 export default App;
