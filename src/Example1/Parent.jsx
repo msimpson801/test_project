@@ -12,9 +12,6 @@ export default function Parent() {
     const [colour, setColour] = useState("hotpink")
     const renderCount = useRenderCount()
 
-    console.log("Hello")
-    console.log("Hello")
-
     function updateColour() {
         setColour(prevState => prevState === "#FFC028" ? "hotpink" : "#FFC028")
     }

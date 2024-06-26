@@ -1,7 +1,7 @@
 import {ParentContainer} from "../Common/CommonStyles";
 import Parent from "./Parent";
 
-export default function RerenderPlayground() {
+export default function SimpleState() {
 
     return (
         <ParentContainer>
