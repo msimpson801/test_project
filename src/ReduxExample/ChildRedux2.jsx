@@ -18,9 +18,10 @@ export default function ChildRedux2() {
             <Card>
                 <Star colour={colour}/>
                 <Label>Child</Label>
+                <div style={{fontSize: "12px"}}>*Pulls colour from redux store</div>
                 <RerenderText/>
             </Card>
-            <PropsIllustrated hasProps={false}  verticalLineHeight={"100px"}/>
+            <PropsIllustrated hasProps={false} verticalLineHeight={"100px"}/>
             <GrandchildRedux2 />
         </div>
 

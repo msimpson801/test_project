@@ -1,11 +1,11 @@
 import {ParentContainer} from "../Common/CommonStyles";
-import Parent from "./Parent";
+import ParentNoProps from "./ParentNoProps";
 
-export default function SimpleState() {
+export default function SimpleExampleNoProps() {
 
     return (
         <ParentContainer>
-            <Parent/>
+            <ParentNoProps/>
         </ParentContainer>
     )
 }

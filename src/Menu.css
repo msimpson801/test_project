@@ -8,15 +8,16 @@
   user-select: none;
 }
 
-#menuToggle a
+#menuToggle li
 {
   text-decoration: none;
   color: #232323;
+  cursor: pointer;
 
   transition: color 0.3s ease;
 }
 
-#menuToggle a:hover
+#menuToggle li:hover
 {
   color: hotpink;
 }
@@ -39,9 +40,7 @@
   -webkit-touch-callout: none;
 }
 
-/*
- * Just a quick hamburger
- */
+
 #menuToggle span
 {
   display: block;

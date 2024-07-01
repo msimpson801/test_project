@@ -32,7 +32,7 @@ export default function ParentRedux() {
                 <DarkModeButton toggleStatus={toggleStatus} />
                 <Label toggleStatus={toggleStatus}>Parent</Label>
                 <Button colour={"#647df9"} onClick={() => dispatch(actions.toggleMode())}>
-                    Toggle Dark Mode
+                    Toggle Dark Mode in Parent
                 </Button>
                 <RerenderText toggleStatus={toggleStatus}/>
             </Card>

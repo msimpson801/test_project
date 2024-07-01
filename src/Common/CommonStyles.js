@@ -3,8 +3,6 @@ import {keyframes} from '@emotion/react';
 
 
 export const Card = styled.div`
-  --pseudo-shadow-height: 4px;
-  --radius: 16px;
   position: relative;
   z-index: 2;
   display: flex;
@@ -17,12 +15,13 @@ export const Card = styled.div`
   min-width: ${props => (props.minWidth ? props.minWidth : '200px')};
   max-width: min(100%, 250px);
   min-height: 170px;
-  border-radius: var(--radius);
+  border-radius: 16px;
   padding: 26px;
-  border-bottom: var(--pseudo-shadow-height) solid hsl(220deg 10% 80%);
-  background-color: ${props => (props.toggleStatus === "night" ? "black" : 'rgb(231, 233, 239)')};
-  font-family: var(--font-family-mono);
+  border-bottom: 4px solid;
+    border-bottom-color: ${props => (props.toggleStatus === "night" ? "#170c1a" : '#C7CAD1FF')};;
+  background-color: ${props => (props.toggleStatus === "night" ? "#301934" : 'rgb(231, 233, 239)')};
   overflow: hidden;
+    transition: all .5s;
 `
 
 
