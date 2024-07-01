@@ -1,36 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    shapeColour: "hotpink",
-    mode: "day"
-}
-
-function toggleColour(state) {
-    if (state.shapeColour === "hotpink") {
-        state.shapeColour = "dodgerblue"
-    } else {
-        state.shapeColour = "hotpink"
-    }
+    colour: "hotpink",
 }
 
 
-function toggleMode(state) {
-    if (state.mode === "night") {
-        state.mode = "day"
-    } else {
-        state.mode = "night"
-    }
-}
 
-export const colourAndShapeSlice = createSlice({
-    name: 'colourAndShape',
+export const colourSlice = createSlice({
+    name: 'shape',
     initialState,
     reducers: {
-        toggleColor: toggleColour,
-        toggleMode: toggleMode
+        toggleColour: (state) => {
+            if (state.colour === "hotpink") {
+                state.colour = "dodgerblue"
+            } else {
+                state.colour = "hotpink"
+            }
+        }
     },
 })
 
-export const actions = colourAndShapeSlice.actions
+export const { toggleColour } = colourSlice.actions
 
-export default colourAndShapeSlice.reducer
+
+export default colourSlice.reducer

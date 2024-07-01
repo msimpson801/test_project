@@ -8,7 +8,7 @@ import styled from '@emotion/styled'
 import ChildRedux1 from "./ChildRedux1";
 import ChildRedux2 from "./ChildRedux2";
 import DarkModeButton from "../MorphPlayground";
-import {actions} from "../Common/colourAndShapeSlice";
+import {toggleNightMode} from "../Common/nightModeSlice";
 
 
 const Container = styled.div`
@@ -23,7 +23,7 @@ const ParentContainer = styled.div`
 `
 
 export default function ParentRedux() {
-    const toggleStatus  = useSelector((state) => state.colour.mode)
+    const toggleStatus  = useSelector((state) => state.nightmode.status)
     const dispatch = useDispatch()
 
     return (
@@ -31,7 +31,7 @@ export default function ParentRedux() {
             <Card minWidth={"500px"} toggleStatus={toggleStatus}>
                 <DarkModeButton toggleStatus={toggleStatus} />
                 <Label toggleStatus={toggleStatus}>Parent</Label>
-                <Button colour={"#647df9"} onClick={() => dispatch(actions.toggleMode())}>
+                <Button colour={"#647df9"} onClick={() => dispatch(toggleNightMode())}>
                     Toggle Dark Mode in Parent
                 </Button>
                 <RerenderText toggleStatus={toggleStatus}/>

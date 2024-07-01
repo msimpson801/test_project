@@ -5,7 +5,7 @@ import {Card} from "../Common/CommonStyles";
 import {useSelector} from "react-redux";
 
 export default function GrandchildRedux() {
-    const colour  = useSelector((state) => state.colour.shapeColour)
+    const colour  = useSelector((state) => state.shape.colour)
 
     return (
         <Card>

@@ -2,14 +2,12 @@ import Label from "../Common/Label";
 import RerenderText from "../Common/RerenderText";
 import {Card} from "../Common/CommonStyles";
 import PropsIllustrated from "../Common/PropsIllustrated";
-import GrandchildRedux from "./GrandchildRedux";
-import GrandchildRedux1 from "./GrandchildRedux1";
 import GrandchildRedux2 from "./GrandchildRedux2";
 import Star from "../Common/Star";
 import {useSelector} from "react-redux";
 
 export default function ChildRedux2() {
-    const colour  = useSelector((state) => state.colour.shapeColour)
+    const colour  = useSelector((state) => state.shape.colour)
 
 
     return (

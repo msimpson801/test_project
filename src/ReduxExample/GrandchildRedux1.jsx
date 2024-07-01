@@ -2,21 +2,20 @@ import Star from "../Common/Star";
 import Label from "../Common/Label";
 import RerenderText from "../Common/RerenderText";
 import {Card} from "../Common/CommonStyles";
-import {useDispatch, useSelector} from "react-redux";
-import Button from "../Common/Button";
-import {actions} from "../Common/colourAndShapeSlice";
+import {useSelector} from "react-redux";
+
 
 
 export default function GrandchildRedux1() {
-    const colour  = useSelector((state) => state.colour.shapeColour)
-    const dispatch = useDispatch()
+    const colour  = useSelector((state) => state.shape.colour)
+
 
 
     return (
         <Card>
             <Star colour={colour}/>
             <Label>Grandchild</Label>
-            <Button onClick={() => dispatch(actions.toggleColor())} colour={"#647df9"}>Update star colour</Button>
+            <div style={{fontSize: "12px"}}>*Pulls colour from redux store</div>
             <RerenderText/>
         </Card>
     )
