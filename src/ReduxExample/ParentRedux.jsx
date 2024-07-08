@@ -25,6 +25,7 @@ const ParentContainer = styled.div`
 export default function ParentRedux() {
     const toggleStatus  = useSelector((state) => state.nightmode.status)
     const dispatch = useDispatch()
+    console.log("Pushing a console log")
 
     return (
         <ParentContainer>
