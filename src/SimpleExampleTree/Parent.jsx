@@ -6,9 +6,8 @@ import Child3 from "./Child3";
 import styled from '@emotion/styled'
 import Child1 from "./Child1";
 import Child2 from "./Child2";
-import Star from "../Common/Star";
 import {useState} from "react";
-import {useRenderCount} from "../Common/useRenderCount";
+import StarHeart from "../ContextComplexExample/StarHeart";
 
 
 const Container = styled.div`
@@ -33,7 +32,7 @@ export default function Parent() {
     return (
         <ParentContainer>
             <Card minWidth="500px">
-                <Star colour={colour}/>
+                <StarHeart colour={colour} />
                 <Label>Parent</Label>
                 <Button onClick={updateColour} colour={"#647df9"}>Update colour</Button>
                 <RerenderText/>

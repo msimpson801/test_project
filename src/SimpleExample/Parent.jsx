@@ -7,6 +7,8 @@ import RerenderText from "../Common/RerenderText";
 import Star from "../Common/Star";
 import Child from "./Child";
 import {Card} from "../Common/CommonStyles";
+import StarHeart from "../ContextComplexExample/StarHeart";
+import StarHeartColourOnly from "../ContextComplexExample/StarHeartColourOnly";
 
 export default function Parent() {
     const [colour, setColour] = useState("hotpink")
@@ -17,9 +19,9 @@ export default function Parent() {
     }
 
     return (
-        <div>
+        <div style={{margin: "1rem"}}>
             <Card>
-                <Star colour={colour}/>
+                <StarHeart colour={colour} />
                 <Label>Parent</Label>
                 <Button onClick={updateColour} colour={"#647df9"}>Update colour</Button>
                 <RerenderText/>

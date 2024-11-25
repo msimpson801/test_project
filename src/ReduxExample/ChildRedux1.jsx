@@ -13,13 +13,13 @@ export default function ChildRedux1() {
 
     return (
         <div style={{marginRight: "10px", marginLeft: "10px"}}>
-            <PropsIllustrated hasProps={false} />
+            <PropsIllustrated hasProps={false}  verticalLineHeight={"60px"}/>
             <Card>
                 <Label>Child</Label>
                 <Button onClick={() => dispatch(toggleColour())} colour="#647df9">Update star colour</Button>
                 <RerenderText/>
             </Card>
-            <PropsIllustrated  hasProps={false}/>
+            <PropsIllustrated hasProps={false}  verticalLineHeight={"60px"}/>
             <GrandchildRedux1 />
         </div>
 

@@ -7,8 +7,16 @@ import PropDrillPlayground from "./PropDrillExample/PropDrillPlayground";
 import ContextPlayground from "./ContextExample/ContextPlayground";
 import {store} from "./Common/configureStore";
 import Home from "./Home";
-import SimpleExampleNoProps from "./SimpleExampleNoProps/SimpleExampleNoProps";
+import Myth1 from "./SimpleExampleNoProps/Myth1";
 import SimpleExampleTree from "./SimpleExampleTree/SimpleExampleTree";
+import ComponentsAsProps from "./ComponentsAsProps/ComponentsAsProps";
+import SlowForm from "./ComponentsAsProps/SlowForm";
+import SlowFormMemoized from "./ComponentsAsProps/SlowFormMemoized";
+import ContextComplexPlayground from "./ContextComplexExample/ContextComplexPlayground";
+import StarHeart from "./ContextComplexExample/StarHeart";
+import BackgroundColourChangeOnScroll from "./SuperDuperNewComponent/BackgroundColourChangeOnScroll";
+import Myth2 from "./SimpleExampleParentNoStateChange/Myth2";
+import FastForm from "./ComponentsAsProps/FastForm";
 
 
 function App() {
@@ -18,10 +26,18 @@ function App() {
                     <Route path="*" element={<Home/>}>
                         <Route path="redux" element={<ReduxPlayground/>}/>
                         <Route path="simplexample" element={<SimpleExample/>}/>
-                        <Route path="simplexamplenoprops" element={<SimpleExampleNoProps/>}/>
+                        <Route path="myth1" element={<Myth1/>}/>
+                        <Route path="myth2" element={<Myth2/>}/>
                         <Route path="simplexampletree" element={<SimpleExampleTree/>}/>
                         <Route path="propdrill" element={<PropDrillPlayground/>}/>
                         <Route path="context" element={<ContextPlayground/>}/>
+                        <Route path="contextcomplex" element={<ContextComplexPlayground/>}/>
+                        <Route path="star" element={<StarHeart/>}/>
+                        <Route path="componentsasprops" element={<ComponentsAsProps/>}/>
+                        <Route path="slowform" element={<SlowForm/>}/>
+                        <Route path="slowformmemo" element={<SlowFormMemoized/>}/>
+                        <Route path="fastform" element={<FastForm/>}/>
+                        <Route path="backgroundcolourchangeonscroll" element={<BackgroundColourChangeOnScroll/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

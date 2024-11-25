@@ -9,6 +9,8 @@ import ChildRedux1 from "./ChildRedux1";
 import ChildRedux2 from "./ChildRedux2";
 import DarkModeButton from "../MorphPlayground";
 import {toggleNightMode} from "../Common/nightModeSlice";
+import React from "react";
+import ReduxStoreIllustration from "./ReduxStoreIllustration";
 
 
 const Container = styled.div`
@@ -22,15 +24,16 @@ const ParentContainer = styled.div`
   align-items: center;
 `
 
+
 export default function ParentRedux() {
     const toggleStatus  = useSelector((state) => state.nightmode.status)
     const dispatch = useDispatch()
-    console.log("Pushing a console log")
 
     return (
         <ParentContainer>
+            <ReduxStoreIllustration />
             <Card minWidth={"500px"} toggleStatus={toggleStatus}>
-                <DarkModeButton toggleStatus={toggleStatus} />
+                <DarkModeButton toggleStatus={toggleStatus}/>
                 <Label toggleStatus={toggleStatus}>Parent</Label>
                 <Button colour={"#647df9"} onClick={() => dispatch(toggleNightMode())}>
                     Toggle Dark Mode in Parent

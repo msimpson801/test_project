@@ -1,8 +1,8 @@
 import {useRenderCount} from "./useRenderCount";
 import {AnimatedText} from "./CommonStyles";
-export default function RerenderText({toggleStatus = "day"}) {
+export default function RerenderText({toggleStatus = "day", text = "Rendering"}) {
     const renderCount = useRenderCount()
 
-    return <AnimatedText toggleStatus={toggleStatus} key={renderCount}>Rendering</AnimatedText>
+    return <AnimatedText toggleStatus={toggleStatus} key={renderCount}>{text}</AnimatedText>
 }
 

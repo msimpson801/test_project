@@ -3,8 +3,7 @@ import Label from "../Common/Label";
 import Button from "../Common/Button";
 import RerenderText from "../Common/RerenderText";
 import {Card} from "../Common/CommonStyles";
-import Heart from "../Common/Heart";
-import Star from "../Common/Star";
+import StarHeart from "../ContextComplexExample/StarHeart";
 
 export default function Child({colour}) {
     const [shape, setShape] = useState("star")
@@ -15,7 +14,7 @@ export default function Child({colour}) {
 
     return (
         <Card>
-            {shape === "star" ? <Star colour={colour}/> : <Heart colour={colour}/>}
+            <StarHeart colour={colour} shape={shape} updatesShape={true} className="child" />
             <Label>Child</Label>
             <Button onClick={updateShape} colour={"#647df9"}>Update shape</Button>
             <RerenderText/>

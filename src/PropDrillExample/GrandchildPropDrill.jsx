@@ -5,12 +5,13 @@ import Label from "../Common/Label";
 import Button from "../Common/Button";
 import RerenderText from "../Common/RerenderText";
 import {Card} from "../Common/CommonStyles";
+import StarHeart from "../ContextComplexExample/StarHeart";
 
 export default function GrandchildPropDrill({colour}) {
 
     return (
         <Card>
-            <Star colour={colour}/>
+            <StarHeart colour={colour}/>
             <Label>Grandchild</Label>
             <RerenderText/>
         </Card>

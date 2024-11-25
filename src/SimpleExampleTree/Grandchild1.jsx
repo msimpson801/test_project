@@ -1,10 +1,9 @@
-import Star from "../Common/Star";
 import Label from "../Common/Label";
 import RerenderText from "../Common/RerenderText";
 import {Card} from "../Common/CommonStyles";
 import Button from "../Common/Button";
 import {useState} from "react";
-import Heart from "../Common/Heart";
+import StarHeart from "../ContextComplexExample/StarHeart";
 
 
 export default function Grandchild1({colour}) {
@@ -16,7 +15,7 @@ export default function Grandchild1({colour}) {
 
     return (
         <Card>
-            {shape === "star" ? <Star colour={colour}/> : <Heart colour={colour}/>}
+            <StarHeart colour={colour} shape={shape} updatesShape={true} className="grandchild1" />
             <Label>Grandchild</Label>
             <Button colour={"#647df9"} onClick={updateShape}>Update shape</Button>
             <RerenderText/>

@@ -36,8 +36,8 @@ export default function  DarkModeButton  ({toggleStatus})  {
 
     return (
         <>
-            <div style={{width: "55px", height: "55px", backgroundColor: "transparent"}}>
-                <svg id="darkMode" width="55" height="55" viewBox="0 0 55 55" fill="none"
+            <div style={{width: "45px", height: "45px", backgroundColor: "transparent"}}>
+                <svg id="darkMode" width="45" height="45" viewBox="0 0 55 55" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                     <path className="circle"
                           d={circlePath}

@@ -7,6 +7,7 @@ import Star from "../Common/Star";
 import Heart from "../Common/Heart";
 import Button from "../Common/Button";
 import {useState} from "react";
+import StarHeart from "../ContextComplexExample/StarHeart";
 
 export default function Child3({colour}) {
     const [shape, setShape] = useState("star")
@@ -20,7 +21,7 @@ export default function Child3({colour}) {
         <div style={{marginRight: "10px", marginLeft: "10px"}}>
             <PropsIllustrated hasProps={true} />
             <Card>
-                {shape === "star" ? <Star colour={colour}/> : <Heart colour={colour}/>}
+                <StarHeart colour={colour} shape={shape} updatesShape={true} className="child3" />
                 <Label>Child</Label>
                 <Button colour={"#647df9"} onClick={updateShape}>Update shape</Button>
                 <RerenderText/>

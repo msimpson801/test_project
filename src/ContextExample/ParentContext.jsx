@@ -6,6 +6,7 @@ import {Card} from "../Common/CommonStyles";
 import ChildContext from "./ChildContext";
 import styled from "@emotion/styled";
 import Button from "../Common/Button";
+import StarHeart from "../ContextComplexExample/StarHeart";
 
 const ContextIllustration = styled.div`
   padding: 20px;
@@ -51,7 +52,7 @@ export default function ParentContext() {
                 </ContextDiv>
 
                 <Card>
-                    <Star colour={colour}/>
+                    <StarHeart colour={colour}/>
                     <Label>Parent</Label>
                     <Button onClick={updateColour} colour={"#647df9"}>Update colour</Button>
                     <RerenderText/>

@@ -7,10 +7,10 @@ import RerenderText from "../Common/RerenderText";
 import Star from "../Common/Star";
 import {Card} from "../Common/CommonStyles";
 import ChildPropDrill from "./ChildPropDrill";
+import StarHeart from "../ContextComplexExample/StarHeart";
 
 export default function ParentPropDrill() {
     const [colour, setColour] = useState("hotpink")
-    const renderCount = useRenderCount()
 
     function updateColour() {
         setColour(prevState => prevState === "#FFC028" ? "hotpink" : "#FFC028")
@@ -19,7 +19,7 @@ export default function ParentPropDrill() {
     return (
         <div>
             <Card>
-                <Star colour={colour}/>
+                <StarHeart colour={colour}/>
                 <Label>Parent</Label>
                 <Button onClick={updateColour} colour={"#647df9"}>Update colour</Button>
                 <RerenderText/>

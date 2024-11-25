@@ -4,9 +4,9 @@ import Label from "../Common/Label";
 import PropsIllustrated from "../Common/PropsIllustrated";
 import {useRenderCount} from "../Common/useRenderCount";
 import RerenderText from "../Common/RerenderText";
-import Star from "../Common/Star";
 import Child from "./ChildNoProps";
 import {Card} from "../Common/CommonStyles";
+import StarHeart from "../ContextComplexExample/StarHeart";
 
 export default function ParentNoProps() {
     const [colour, setColour] = useState("hotpink")
@@ -17,9 +17,9 @@ export default function ParentNoProps() {
     }
 
     return (
-        <div>
+        <div style={{margin: "1rem"}}>
             <Card>
-                <Star colour={colour}/>
+                <StarHeart colour={colour} />
                 <Label>Parent</Label>
                 <Button onClick={updateColour} colour={"#647df9"}>Update colour</Button>
                 <RerenderText/>
