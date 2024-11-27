@@ -17,6 +17,7 @@ import StarHeart from "./ContextComplexExample/StarHeart";
 import BackgroundColourChangeOnScroll from "./SuperDuperNewComponent/BackgroundColourChangeOnScroll";
 import Myth2 from "./SimpleExampleParentNoStateChange/Myth2";
 import FastForm from "./ComponentsAsProps/FastForm";
+import UserInputOrFetch from "./UserInputOrFetch/UserInputOrFetch";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
                         <Route path="slowformmemo" element={<SlowFormMemoized/>}/>
                         <Route path="fastform" element={<FastForm/>}/>
                         <Route path="backgroundcolourchangeonscroll" element={<BackgroundColourChangeOnScroll/>}/>
+                        <Route path="userinputorfetch" element={<UserInputOrFetch/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

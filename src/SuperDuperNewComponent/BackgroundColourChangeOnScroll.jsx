@@ -8,6 +8,7 @@ import Manatee from "../Animals/Manatee.png"
 import Panda from "../Animals/Panda.png"
 import Snail from "../Animals/Snail.png"
 import Worm from "../Animals/Worm.png"
+import useScrollPosition from "./useScrollPosition";
 
 
 const Card = styled.div` border-radius: 10px;
@@ -109,7 +110,7 @@ function AnimalCard({animalInfo}) {
 
 
 
-const Container = styled.div`
+const StyledLayout = styled.div`
     min-height: 100vh;
     min-width: 100vw;
     height: 100%;
@@ -131,74 +132,70 @@ const Container = styled.div`
     align-items: center;
 `;
 
+const slothInfo = {
+    url: Sloth,
+    title: "Sleepy Sloth",
+    description: "Taking life one slow step at a time.",
+    backgroundColor: "#ffe0c4" // Pastel Pink
+}
 
-const ColorChangingComponent = () => {
+const tortoiseInfo = {
+    url: Tortoise,
+    title: "Tranquil Tortoise",
+    description: "Patience is a virtue, speed is not a necessity.",
+    backgroundColor: "#bfeddd" // Pastel Green
+}
 
-    const [scrollPosition, setScrollPosition] = useState(0);
-    const handleScroll = () => {
-        setScrollPosition(window.scrollY);
-    };
-    const slothInfo = {
-        url: Sloth,
-        title: "Sleepy Sloth",
-        description: "Taking life one slow step at a time.",
-        backgroundColor: "#ffe0c4" // Pastel Pink
-    }
+const manateeInfo = {
+    url: Manatee,
+    title: "Mellow Manatee",
+    description: "Gliding through life at a leisurely pace.",
+    backgroundColor: "#e2d2ff" // Pastel Orange
+}
 
-    const tortoiseInfo = {
-        url: Tortoise,
-        title: "Tranquil Tortoise",
-        description: "Patience is a virtue, speed is not a necessity.",
-        backgroundColor: "#bfeddd" // Pastel Green
-    }
+const koalaInfo = {
+    url: SleepyKoala,
+    title: "Catatonic Koala",
+    description: "Living in the slow lane, high up in the trees.",
+    backgroundColor: "#B2D3C2" // Pastel Turquoise
+}
 
-    const manateeInfo = {
-        url: Manatee,
-        title: "Mellow Manatee",
-        description: "Gliding through life at a leisurely pace.",
-        backgroundColor: "#e2d2ff" // Pastel Orange
-    }
+const wormInfo = {
+    url: Worm,
+    title: "Weary Worm",
+    description: "Slowly tunneling through the earth, one inch at a time.",
+    backgroundColor: "#ffd2fd" // Pastel Purple
+}
 
-    const koalaInfo = {
-        url: SleepyKoala,
-        title: "Catatonic Koala",
-        description: "Living in the slow lane, high up in the trees.",
-        backgroundColor: "#B2D3C2" // Pastel Turquoise
-    }
+const pandaInfo = {
+    url: Panda,
+    title: "Placid Panda",
+    description: "Enjoying a slow, bamboo-filled day.",
+    backgroundColor: "#E3E0F7" // Pastel Lavender
+}
 
-    const wormInfo = {
-        url: Worm,
-        title: "Weary Worm",
-        description: "Slowly tunneling through the earth, one inch at a time.",
-        backgroundColor: "#ffd2fd" // Pastel Purple
-    }
+const snailInfo = {
+    url: Snail,
+    title: "Sleepy snail",
+    description: "Dozing in my shell, leaving a dreamy trail",
+    backgroundColor: "#fae7b2" // Pastel Lavender
+}
 
-    const pandaInfo = {
-        url: Panda,
-        title: "Placid Panda",
-        description: "Enjoying a slow, bamboo-filled day.",
-        backgroundColor: "#E3E0F7" // Pastel Lavender
-    }
-
-    const snailInfo = {
-        url: Snail,
-        title: "Sleepy snail",
-        description: "Dozing in my shell, leaving a dreamy trail",
-        backgroundColor: "#fae7b2" // Pastel Lavender
-    }
-
-
-
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [])
-
+function ColourChangingLayout ({scrollPos, children}) {
+    const {scrollPosition} = useScrollPosition();
 
     return (
-        <Container scrollPos={scrollPosition}>
+        <StyledLayout scrollPos={scrollPosition}>
+            {children}
+        </StyledLayout>
+    )
+}
+
+
+function BackgroundColourChangeOnScroll ()  {
+
+    return (
+        <ColourChangingLayout>
             <SlowBoisHeading>Slow Components</SlowBoisHeading>
             <AnimalCard animalInfo={slothInfo}/>
             <AnimalCard animalInfo={tortoiseInfo}/>
@@ -207,15 +204,7 @@ const ColorChangingComponent = () => {
             <AnimalCard animalInfo={wormInfo}/>
             <AnimalCard animalInfo={pandaInfo}/>
             <AnimalCard animalInfo={snailInfo}/>
-        </Container>
-    );
-};
-
-// Main App
-const BackgroundColourChangeOnScroll = () => {
-
-    return (
-        <ColorChangingComponent/>
+        </ColourChangingLayout>
     );
 };
 

@@ -7,7 +7,8 @@ import Snail from "../Animals/Snail.png"
 
 
 
-const Card = styled.div` border-radius: 10px;
+const Card = styled.div` 
+    border-radius: 10px;
     background-color: ${({ backgroundColor }) => backgroundColor || '#f8f4e5'};
     padding: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
