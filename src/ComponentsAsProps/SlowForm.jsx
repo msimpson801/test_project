@@ -109,7 +109,7 @@ export default function SlowForm() {
     const [message, setMessage] = useState("");
 
     return (
-        <Card backgroundColor={"#e6ffef"}>
+        <Card backgroundColor={"#ffffff"}>
             <SlowComponent />
             <TextArea
                 name="message"

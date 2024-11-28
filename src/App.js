@@ -18,6 +18,7 @@ import BackgroundColourChangeOnScroll from "./SuperDuperNewComponent/BackgroundC
 import Myth2 from "./SimpleExampleParentNoStateChange/Myth2";
 import FastForm from "./ComponentsAsProps/FastForm";
 import UserInputOrFetch from "./UserInputOrFetch/UserInputOrFetch";
+import MemoDiagram from "./MemoDiagram/MemoDiagram";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
                         <Route path="fastform" element={<FastForm/>}/>
                         <Route path="backgroundcolourchangeonscroll" element={<BackgroundColourChangeOnScroll/>}/>
                         <Route path="userinputorfetch" element={<UserInputOrFetch/>}/>
+                        <Route path="memodiagram" element={<MemoDiagram/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

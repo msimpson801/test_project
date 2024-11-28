@@ -183,6 +183,7 @@ export default function UserInputOrFetch() {
 
     return (
         <Card>
+            {!loading && !shape ? <h3>Select a shape</h3>: null}
             {shape ? <StarHeart shape={"star"} colour={"gold"} updatesShape={true} className="starForForm"/>: null}
             {shape ? <h3>You are a star!</h3>: null}
             {!loading && !shape ? <InputField value={inputValue} onChange={(e) => setInputValue(e.target.value)} /> : null}
