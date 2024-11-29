@@ -34,6 +34,19 @@ const ContextValue = styled.div`
 `
 export const ColourContext = createContext(null)
 
+function ContextValueIllustration({colour}) {
+    return (
+        <>
+            <div>Context:</div>
+            <ContextDiv>
+                <div>{`{ colour:`}</div>
+                <ContextValue colour={colour}>{colour}</ContextValue>
+                <div>{` } `}</div>
+            </ContextDiv>
+        </>
+    )
+}
+
 export default function ParentContext() {
     const [colour, setColour] = useState("#FF69B4")
 
@@ -44,13 +57,7 @@ export default function ParentContext() {
     return (
         <ColourContext.Provider value={colour}>
             <ContextIllustration contextValue={colour}>
-                <div>Context:</div>
-                <ContextDiv>
-                    <div>{`{ colour:`}</div>
-                    <ContextValue colour={colour}>{colour}</ContextValue>
-                    <div>{` } `}</div>
-                </ContextDiv>
-
+                <ContextValueIllustration colour={colour}/>
                 <Card>
                     <StarHeart colour={colour}/>
                     <Label>Parent</Label>

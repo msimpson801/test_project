@@ -19,6 +19,7 @@ import Myth2 from "./SimpleExampleParentNoStateChange/Myth2";
 import FastForm from "./ComponentsAsProps/FastForm";
 import UserInputOrFetch from "./UserInputOrFetch/UserInputOrFetch";
 import MemoDiagram from "./MemoDiagram/MemoDiagram";
+import ContextMessAround from "./ContextComplexChildren/ContextMessAround";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
                         <Route path="backgroundcolourchangeonscroll" element={<BackgroundColourChangeOnScroll/>}/>
                         <Route path="userinputorfetch" element={<UserInputOrFetch/>}/>
                         <Route path="memodiagram" element={<MemoDiagram/>}/>
+                        <Route path="contextmessaround" element={<ContextMessAround/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

@@ -1,13 +1,11 @@
 import React, {createContext, useContext, useState} from "react";
 import Label from "../Common/Label";
 import RerenderText from "../Common/RerenderText";
-import Star from "../Common/Star";
 import {Card} from "../Common/CommonStyles";
 import styled from "@emotion/styled";
 import Button from "../Common/Button";
 import PropsIllustrated from "../Common/PropsIllustrated";
-import Heart from "../Common/Heart";
-import AwesomeStar from "./StarHeart";
+import StarHeart from "./StarHeart";
 
 const ContextIllustration = styled.div`
     padding: 20px;
@@ -48,23 +46,27 @@ const ParentContainer = styled.div`
 const ColourAndShapeContext = createContext(null)
 
 function Grandchild1() {
-    const {colour, shape} = useContext(ColourAndShapeContext) || {}
+    const {colour, setShape} = useContext(ColourAndShapeContext) || {}
+    function updateShape() {
+        setShape(prevState => prevState === "star" ? "heart" : "star")
+    }
 
     return (
         <Card>
-            {shape === "star" ? <Star colour={colour}/> : <Heart colour={colour}/>}
+            <StarHeart colour={colour}/>
             <Label>Grandchild</Label>
+            <Button onClick={updateShape} colour={"#f964db"}>Update shape</Button>
             <RerenderText/>
         </Card>
     )
 }
 
 function Grandchild2() {
-    const {colour, shape} = useContext(ColourAndShapeContext) || {}
+    const {colour} = useContext(ColourAndShapeContext) || {}
 
     return (
         <Card>
-            {shape === "star" ? <Star colour={colour}/> : <Heart colour={colour}/>}
+            <StarHeart colour={colour}/>
             <Label>Grandchild</Label>
             <RerenderText/>
         </Card>
@@ -84,6 +86,7 @@ function Grandchild3() {
 function Child1() {
     const {colour} = useContext(ColourAndShapeContext) || {}
 
+
     return (
         <div style={{marginRight: "10px", marginLeft: "10px"}}>
             <PropsIllustrated hasProps={false}/>
@@ -99,8 +102,6 @@ function Child1() {
 }
 
 function Child2() {
-    const {colour, shape} = useContext(ColourAndShapeContext) || {}
-
 
     return (
         <div style={{marginRight: "10px", marginLeft: "10px"}}>
@@ -110,21 +111,21 @@ function Child2() {
                 <RerenderText/>
             </Card>
             <PropsIllustrated hasProps={false} verticalLineHeight={"60px"}/>
-            <Grandchild2 shape={shape} colour={colour}/>
+            <Grandchild2/>
         </div>
 
     )
 }
 
 function Child3() {
-    const {colour, shape} = useContext(ColourAndShapeContext) || {}
+    const {colour} = useContext(ColourAndShapeContext) || {}
 
 
     return (
         <div style={{marginRight: "10px", marginLeft: "10px"}}>
             <PropsIllustrated hasProps={false}/>
             <Card>
-                {shape === "star" ? <Star colour={colour}/> : <Heart colour={colour}/>}
+                <StarHeart colour={colour}/>
                 <Label>Child</Label>
                 <RerenderText/>
             </Card>
@@ -135,49 +136,61 @@ function Child3() {
     )
 }
 
+function ContextValueIllustrations() {
+    const {colour, shape} = useContext(ColourAndShapeContext) || {}
+
+
+    return (
+        <>
+            <div>Context:</div>
+            <ContextDiv>
+                <div>{`{ Colour:`}</div>
+                <ContextValue colour={colour}>{colour}</ContextValue>
+                <div>{`, Shape:`}</div>
+                <ContextValue colour={colour}>{shape}</ContextValue>
+                <div>{` } `}</div>
+            </ContextDiv>
+        </>
+    )
+}
+
+function ParentCard() {
+    const {colour, setColour} = useContext(ColourAndShapeContext) || {}
+
+    function updateColour() {
+        setColour(prevState => prevState === "#FFC028" ? "#FF69B4" : "#FFC028")
+    }
+
+    return (
+        <>
+            <Card minWidth="500px">
+                <StarHeart colour={colour}/>
+                <Label>Parent</Label>
+                <Button onClick={updateColour} colour={"#647df9"}>Update colour</Button>
+                <RerenderText/>
+            </Card>
+        </>
+    )
+}
+
+
+export default function ParentContextComplex() {
+    const [colour, setColour] = useState("#FF69B4")
+    const [shape, setShape] = useState("star")
 
 
 
-    export default function ParentContextComplex() {
-        const [colour, setColour] = useState("#FF69B4")
-        const [shape, setShape] = useState("star")
 
-        function updateColour() {
-            setColour(prevState => prevState === "#FFC028" ? "#FF69B4" : "#FFC028")
-        }
-
-        function updateShape() {
-            setShape(prevState => prevState === "star" ? "heart" : "star")
-        }
-
-        return (
-            <ColourAndShapeContext.Provider value={{colour, shape}}>
+    return (
+        <ColourAndShapeContext.Provider value={{colour, setColour, shape, setShape}}>
                 <ContextIllustration contextValue={{colour, shape}}>
-                    <div>Context:</div>
-                    <ContextDiv>
-                        <div>{`{ Colour:`}</div>
-                        <ContextValue colour={colour}>{colour}</ContextValue>
-                        <div>{`, Shape:`}</div>
-                        <ContextValue colour={colour}>{shape}</ContextValue>
-                        <div>{` } `}</div>
-                    </ContextDiv>
-
+                   <ContextValueIllustrations />
                     <ParentContainer>
-                        <Card minWidth="500px">
-                            {shape === "star" ? <Star colour={colour}/> : <Heart colour={colour}/>}
-                            <Label>Parent</Label>
-                            <div style={{display: "flex"}}>
-                                <Button onClick={updateColour} colour={"#647df9"}>Update colour</Button>
-                                <div style={{width: "20px"}}/>
-                                <Button onClick={updateShape} colour={"#f964db"}>Update shape</Button>
-                            </div>
-                            <AwesomeStar />
-                            <RerenderText/>
-                        </Card>
+                     <ParentCard />
                         <Container>
-                            <Child1 colour={colour}/>
-                            <Child2 colour={colour}/>
-                            <Child3 colour={colour}/>
+                            <Child1 />
+                            <Child2/>
+                            <Child3 />
                         </Container>
                     </ParentContainer>
                 </ContextIllustration>
