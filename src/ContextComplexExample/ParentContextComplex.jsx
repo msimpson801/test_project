@@ -118,14 +118,12 @@ function Child2() {
 }
 
 function Child3() {
-    const {colour} = useContext(ColourAndShapeContext) || {}
 
 
     return (
         <div style={{marginRight: "10px", marginLeft: "10px"}}>
             <PropsIllustrated hasProps={false}/>
             <Card>
-                <StarHeart colour={colour}/>
                 <Label>Child</Label>
                 <RerenderText/>
             </Card>
@@ -177,7 +175,7 @@ function ParentCard() {
 export default function ParentContextComplex() {
     const [colour, setColour] = useState("#FF69B4")
     const [shape, setShape] = useState("star")
-
+    const [size, setSize] = useState(1)
 
 
 

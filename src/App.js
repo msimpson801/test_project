@@ -20,6 +20,7 @@ import FastForm from "./ComponentsAsProps/FastForm";
 import UserInputOrFetch from "./UserInputOrFetch/UserInputOrFetch";
 import MemoDiagram from "./MemoDiagram/MemoDiagram";
 import ContextMessAround from "./ContextComplexChildren/ContextMessAround";
+import ColourChangeButton from "./Chamaleon/ColourChangeButton";
 
 
 function App() {
@@ -41,9 +42,11 @@ function App() {
                         <Route path="slowformmemo" element={<SlowFormMemoized/>}/>
                         <Route path="fastform" element={<FastForm/>}/>
                         <Route path="backgroundcolourchangeonscroll" element={<BackgroundColourChangeOnScroll/>}/>
+                        <Route path="chameleon" element={<BackgroundColourChangeOnScroll/>}/>
                         <Route path="userinputorfetch" element={<UserInputOrFetch/>}/>
                         <Route path="memodiagram" element={<MemoDiagram/>}/>
                         <Route path="contextmessaround" element={<ContextMessAround/>}/>
+                        <Route path="colourchange" element={<ColourChangeButton/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

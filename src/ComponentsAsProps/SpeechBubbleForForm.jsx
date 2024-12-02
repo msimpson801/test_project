@@ -30,7 +30,7 @@ const Bubble = styled.div`
     border-radius: 15px;
     padding: 8px;
     position: relative;
-    animation: ${props => props.fadeOut ? fadeOutScale : fadeInScale} 0.5s ease-in-out forwards;
+    // animation: ${props => props.fadeOut ? fadeOutScale : fadeInScale} 0.5s ease-in-out forwards;
     margin-top: -40px;
     margin-bottom: 10px;
     background-color: #bbb9ff;
@@ -55,12 +55,12 @@ export default function SpeechBubbleForForm({ text }) {
     const [fadeOut, setFadeOut] = useState(false);
 
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setFadeOut(true);
-        }, 3000)
-        return () => clearTimeout(timer)
-    }, [])
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setFadeOut(true);
+    //     }, 3000)
+    //     return () => clearTimeout(timer)
+    // }, [])
 
     return (
             <Bubble fadeOut={fadeOut}>
