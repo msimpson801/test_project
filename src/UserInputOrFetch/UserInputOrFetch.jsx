@@ -1,9 +1,10 @@
 import {keyframes} from '@emotion/react';
 import styled from '@emotion/styled';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import StarHeart from "../ContextComplexExample/StarHeart";
 import RerenderText from "../Common/RerenderText";
 import {useRenderCount} from "../Common/useRenderCount";
+import StarRating from "./FavStar";
 
 const FieldWrapper = styled.div` display: block;
     margin: 30px 10px;
@@ -47,10 +48,10 @@ const InputField = ({value, onChange}) => {
         }
     };
     return (<FieldWrapper className={isFocused ? 'focused' : ''}> <Label
-        htmlFor="shape">Shape</Label>
+        htmlFor="name">Name</Label>
         <TextFieldInput type="text"
-                        name="shape"
-                        id="shape"
+                        name="name"
+                        id="name"
                         value={value}
                         onChange={onChange}
                         onFocus={handleFocus}
@@ -142,6 +143,32 @@ const StyledLoadingText = styled.div`
     display: flex;
 `;
 
+
+const bounceIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
+
+const AnimatedHeading = styled.h1`
+  animation: ${bounceIn} 1.5s ease-in-out;
+`;
+
+const Heading = () => {
+    return (
+        <AnimatedHeading>Excellent!</AnimatedHeading>
+    );
+};
+
+
 const LoaderComponent = () => {
     return (
         <Loader>
@@ -157,7 +184,7 @@ function LoadingText() {
     return (
         <>
             <StyledLoadingText>
-                <h3 style={{marginRight: "5px"}}>Fetching shape</h3>
+                <h3 style={{marginRight: "5px"}}>Fetching data</h3>
                 <LoaderComponent/>
             </StyledLoadingText>
         </>
@@ -166,8 +193,37 @@ function LoadingText() {
 }
 
 
+function MultipleStars() {
+    const [starOneVisible, setStarOneVisible] = useState(false);
+    const [starTwoVisible, setStarTwoVisible] = useState(false);
+    const [starThreeVisible, setStarThreeVisible] = useState(false);
+    const [starFourVisible, setStarFourVisible] = useState(false);
+    const [starFiveVisible, setStarFiveVisible] = useState(false);
+    useEffect(() => {
+        setTimeout(() => setStarOneVisible(true), 0 * 800);
+        setTimeout(() => setStarTwoVisible(true), 0.5 * 800);
+        setTimeout(() => setStarThreeVisible(true), 1 * 800);
+        setTimeout(() => setStarFourVisible(true), 1.5 * 800);
+        setTimeout(() => setStarFiveVisible(true), 2 * 800);
+    }, [])
+
+
+    return (<>
+        <div style={{display: 'flex'}}>
+            {starOneVisible && <StarHeart delay={0} colour="gold" className="starForForm"/>}
+            {starTwoVisible && <StarHeart delay={0} colour="gold" className="starForForm"/>}
+            {starThreeVisible && <StarHeart delay={0} colour="gold" className="starForForm"/>}
+            {starFourVisible && <StarHeart delay={0} colour="gold" className="starForForm"/>}
+            {starFiveVisible && <StarHeart delay={0} colour="gold" className="starForForm"/>}
+        </div>
+            <Heading />
+
+        </>
+    );
+}
+
 export default function UserInputOrFetch() {
-    const [inputValue,setInputValue] = useState("")
+    const [inputValue, setInputValue] = useState("")
     const [loading, setLoading] = useState(false)
     const [shape, setShape] = useState(null)
     const renderCount = useRenderCount();
@@ -183,13 +239,15 @@ export default function UserInputOrFetch() {
 
     return (
         <Card>
-            {!loading && !shape ? <h3>Select a shape</h3>: null}
-            {shape ? <StarHeart shape={"star"} colour={"gold"} updatesShape={true} className="starForForm"/>: null}
-            {shape ? <h3>You are a star!</h3>: null}
-            {!loading && !shape ? <InputField value={inputValue} onChange={(e) => setInputValue(e.target.value)} /> : null}
-            {loading ? <LoadingText/>: null}
-            {!loading && !shape ? <Button onClick={handleClick}>Fetch shape data</Button>: null}
-            <RerenderText text={renderCount === "1" ? "First render": `Rendered ${renderCount} times`} />
+
+            {!loading && !shape ? <h3>Get performance rating for:</h3> : null}
+            {shape && <MultipleStars/>}
+            {/*{shape ? <StarMessage>You are a star!</StarMessage> : null}*/}
+            {!loading && !shape ?
+                <InputField value={inputValue} onChange={(e) => setInputValue(e.target.value)}/> : null}
+            {loading ? <LoadingText/> : null}
+            {!loading && !shape ? <Button onClick={handleClick}>Fetch performance data</Button> : null}
+            <RerenderText text={renderCount === "1" ? "First render" : `Rendered ${renderCount} times`}/>
         </Card>
 
     )

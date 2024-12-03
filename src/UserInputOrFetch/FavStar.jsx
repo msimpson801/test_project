@@ -1,196 +1,165 @@
-import {keyframes} from '@emotion/react';
 import styled from '@emotion/styled';
-import {useState} from "react";
-import StarHeart from "../ContextComplexExample/StarHeart";
-import RerenderText from "../Common/RerenderText";
-import {useRenderCount} from "../Common/useRenderCount";
+import {css, keyframes} from '@emotion/react';
 
-const FieldWrapper = styled.div` display: block;
-    margin: 30px 10px;
-    position: relative;
-    outline: none;
-    width: 100%;
 
-    &.focused label {
-        transition: all 0.2s linear;
-        top: -20px;
-    }
-`;
-const Label = styled.label` position: relative;
-    white-space: nowrap;
-    overflow: hidden;
-    font-size: 1em;
-    position: absolute;
-    top: 0px;
+const roundAnimation = keyframes` 0% {
+                                      transform: scale(0);
+                                  }
+                                      11% {
+                                          transform: scale(0);
+                                          border-width: 2.5rem;
+                                      }
+                                      16% {
+                                          transform: scale(1.2);
+                                          border-width: 1.67rem;
+                                      }
+                                      19% {
+                                          transform: scale(1.5);
+                                          border-width: 0;
+                                      }
+                                      100% {
+                                          transform: scale(1.3);
+                                          border-width: 0;
+                                      } `;
+const starAnimation = keyframes` 0% {
+                                     transform: scale(0);
+                                 }
+                                     17% {
+                                         transform: scale(0);
+                                     }
+                                     22% {
+                                         transform: scale(1.3);
+                                     }
+                                     28% {
+                                         transform: scale(0.8);
+                                     }
+                                     35% {
+                                         transform: scale(1.1);
+                                     }
+                                     45% {
+                                         transform: scale(1);
+                                     }
+                                     79% {
+                                         fill: #FFAC33;
+                                     }
+                                     80% {
+                                         fill: #DEE0E0;
+                                     }
+                                     100% {
+                                         fill: #DEE0E0;
+                                     } `;
+const sparkleAnimation = keyframes` 0% {
+                                        transform: scale(0.3);
+                                    }
+                                        12% {
+                                            transform: scale(0.3);
+                                        }
+                                        25% {
+                                            transform: scale(1.5);
+                                        }
+                                        100% {
+                                            transform: scale(1.5);
+                                        } `;
+const sparklesAnimation = keyframes` 0% {
+                                         opacity: 0;
+                                         width: 0.33rem;
+                                         height: 0.33rem;
+                                     }
+                                         10% {
+                                             opacity: 0;
+                                             width: 0.33rem;
+                                             height: 0.25rem;
+                                         }
+                                         12% {
+                                             opacity: 1;
+                                             width: 1.67rem;
+                                             height: 0.25rem;
+                                         }
+                                         20% {
+                                             opacity: 1;
+                                             width: 0.83rem;
+                                             height: 0.33rem;
+                                         }
+                                         23% {
+                                             opacity: 1;
+                                             width: 0.5rem;
+                                             height: 0.25rem;
+                                         }
+                                         28% {
+                                             width: 0.25rem;
+                                             height: 0.2rem;
+                                         }
+                                         37% {
+                                             opacity: 0;
+                                         }
+                                         100% {
+                                             opacity: 0;
+                                             width: 0.25rem;
+                                             height: 0.25rem;
+                                         } `
+
+const FavContainer = styled.div` display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F6FAFC;
+    width: 100vw;
+    height: 100vh; `;
+const FavStar = styled.svg` position: absolute;
+    width: 5rem;
+    fill: #FFAC33;
+    animation: ${starAnimation} 4s infinite linear; `;
+const FavRound = styled.span` position: absolute;
     display: inline-block;
-    background: #FFF;
-    margin: 8px 5px;
-    line-height: 1.4em;
-    padding: 0 10px;
-    transition: all 0.2s linear;
-    text-transform: capitalize;
-`;
-
-const TextFieldInput = styled.input` padding: 10px;
-    width: 100%;
-    border: 1px solid #b5b5b5;
-`;
-
-const InputField = ({value, onChange}) => {
-    const [isFocused, setIsFocused] = useState(false);
-    const handleFocus = () => {
-        setIsFocused(true);
-    };
-    const handleBlur = (event) => {
-        if (event.target.value === '') {
-            setIsFocused(false);
-        }
-    };
-    return (<FieldWrapper className={isFocused ? 'focused' : ''}> <Label
-        htmlFor="shape">Shape</Label>
-        <TextFieldInput type="text"
-                        name="shape"
-                        id="shape"
-                        value={value}
-                        onChange={onChange}
-                        onFocus={handleFocus}
-                        onBlur={handleBlur}
-        />
-    </FieldWrapper>);
-};
-
-
-const Card = styled.div`
-    border-radius: 10px;
-    background-color: ${({backgroundColor}) => backgroundColor || '#ffffff'};
-    padding: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
-    text-align: center;
-    margin: 1rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-width: 400px;
-    min-height: 300px;
-    border: 2px solid #4F4F4F
-`;
-
-const Button = styled.button`
-    width: 100%;
-    padding: 10px;
-    background-color: #a8dadc; /* Pastel button color */
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    cursor: pointer;
-
-    &:hover {
-        background-color: #457b9d;
-    }
-`;
-
-const loaderAnimation = keyframes` 0% {
-                                       transform: translateY(0px);
-                                   }
-                                       50% {
-                                           transform: translateY(-10px);
-                                       }
-                                       100% {
-                                           transform: translateY(0px);
-                                       } `;
-
-
-const Loader = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0px 5px;
-`;
-
-
-const StyledSpan = styled.span`
-    width: 10px;
-    height: 10px;
-    animation: ${loaderAnimation} 0.9s infinite cubic-bezier(0.41, 0.02, 0, 1.15);
-`
-
-const Circle = styled(StyledSpan)`
+    width: 5rem;
+    height: 5rem;
     border-radius: 50%;
-    background-color: #EDC240;
-`
+    border: 2.5rem solid #FFAC33;
+    animation: ${roundAnimation} 4s infinite linear; `;
+const FavSparkle = styled.span` position: absolute;
+    width: 5rem;
+    height: 5rem;
+    animation: ${sparkleAnimation} 4s infinite linear; `;
+const FavSparkleI = styled.span` position: absolute;
+    width: 1.67rem;
+    height: 0.33rem;
+    border-radius: 125px;
+    background: #FB610F;
+    transform-origin: 0 0;
+    animation: ${sparklesAnimation} 4s infinite linear;
 
-const Square = styled(StyledSpan)`
-    background-color: #DE4F2E;
-    animation-delay: 0.5s !important;
-`
+    &:nth-of-type(1) {
+        transform: translate(1rem, 0.63rem) rotate(46deg);
+    }
 
-const Triangle = styled(StyledSpan)`
-    width: 0px;
-    height: 0px;
-    border-left: 5px solid transparent !important;
-    border-right: 5px solid transparent !important;
-    border-bottom: 10px solid #284D4D;
-    animation-delay: 0.2s !important;
-`
+    &:nth-of-type(2) {
+        transform: translate(4.17rem, 0.91rem) rotate(138deg);
+    }
 
+    &:nth-of-type(3) {
+        transform: translate(4.55rem, 2.5rem) rotate(-140deg);
+    }
 
-const StyledLoadingText = styled.div`
-    display: flex;
-`;
+    &:nth-of-type(4) {
+        transform: translate(2.27rem, 5rem) rotate(-90deg);
+    }
 
-const LoaderComponent = () => {
+    &:nth-of-type(5) {
+        transform: translate(0.25rem, 3.73rem) rotate(-36deg);
+    } `;
+const Description = styled.p` position: absolute;
+    font-family: monospace;
+    padding: 0.5rem; `;
+
+export default function StarRating() {
     return (
-        <Loader>
-            <Circle/>
-            <Square/>
-            <Triangle/>
-        </Loader>
-
-    );
-}
-
-function LoadingText() {
-    return (
-        <>
-            <StyledLoadingText>
-                <h3 style={{marginRight: "5px"}}>Fetching shape</h3>
-                <LoaderComponent/>
-            </StyledLoadingText>
-        </>
+        <div>
+            <FavContainer>
+                <div className="fav"><FavStar viewBox="0 0 114 110">
+                    <path
+                        d="M48.7899002,5.95077319 L39.3051518,35.1460145 L8.60511866,35.1460145 C4.87617094,35.1519931 1.57402643,37.5554646 0.422104463,41.1020351 C-0.7298175,44.6486057 0.529798011,48.5337314 3.54354617,50.7297298 L28.3840111,68.7758317 L18.8992627,97.971073 C17.7496089,101.520283 19.0141379,105.406227 22.0323508,107.599168 C25.0505637,109.792109 29.1370771,109.794067 32.1573906,107.604021 L56.9864557,89.5693186 L81.8269206,107.615421 C84.8472342,109.805467 88.9337475,109.803509 91.9519605,107.610568 C94.9701734,105.417627 96.2347024,101.531683 95.0850486,97.9824729 L85.6003001,68.7986315 L110.440765,50.7525296 C113.466376,48.5582894 114.732852,44.663975 113.576698,41.1097771 C112.420545,37.5555791 109.105303,35.1516627 105.367793,35.1574144 L74.6677595,35.1574144 L65.1830111,5.96217312 C64.0286485,2.41064527 60.7208743,0.00457304502 56.9864557,5.53367114e-06 C53.2527571,-0.00420898295 49.9421526,2.39931752 48.7899002,5.95077319 Z"></path>
+                </FavStar> <FavRound/> <FavSparkle> <FavSparkleI/> <FavSparkleI/> <FavSparkleI/> <FavSparkleI/>
+                    <FavSparkleI/> </FavSparkle></div>
+            </FavContainer>
+        </div>
     )
-
 }
-
-
-export default function UserInputOrFetch() {
-    const [inputValue,setInputValue] = useState("")
-    const [loading, setLoading] = useState(false)
-    const [shape, setShape] = useState(null)
-    const renderCount = useRenderCount();
-
-    const handleClick = () => {
-        setLoading(true);
-        setShape(null);
-        setTimeout(() => {
-            setShape("star");
-            setLoading(false);
-        }, 1000); // Reduced timeout to 1 second
-    };
-
-    return (
-        <Card>
-            {!loading && !shape ? <h3>Select a shape</h3>: null}
-            {shape ? <StarHeart shape={"star"} colour={"gold"} updatesShape={true} className="starForForm"/>: null}
-            {shape ? <h3>You are a star!</h3>: null}
-            {!loading && !shape ? <InputField value={inputValue} onChange={(e) => setInputValue(e.target.value)} /> : null}
-            {loading ? <LoadingText/>: null}
-            {!loading && !shape ? <Button onClick={handleClick}>Fetch shape data</Button>: null}
-            <RerenderText text={renderCount === "1" ? "First render": `Rendered ${renderCount} times`} />
-        </Card>
-
-    )
-};
